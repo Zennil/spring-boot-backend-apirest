@@ -1,9 +1,9 @@
-package com.zenil.springboot.backend.apirest.models.services;
+package com.zenil.springboot.backend.apirest.springbootbackendapirest.models.services;
 
 import java.util.List;
 
-import com.zenil.springboot.backend.apirest.models.dao.IClienteDAO;
-import com.zenil.springboot.backend.apirest.models.entity.Cliente;
+import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.dao.IClienteDAO;
+import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

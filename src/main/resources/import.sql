@@ -1,0 +1,13 @@
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona1', 'Apellid1','correo1@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona2', 'Apellid2','correo2@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona3', 'Apellid3','correo3@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona4', 'Apellid4','correo4@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona5', 'Apellid5','correo5@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona6', 'Apellid6','correo6@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona7', 'Apellid7','correo7@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona8', 'Apellid8','correo8@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona9', 'Apellid9','correo9@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona10', 'Apellid10','correo10@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona11', 'Apellid11','correo11@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona12', 'Apellid12','correo12@gmail.com','2020-01-01');
+INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Persona13', 'Apellid13','correo13@gmail.com','2020-01-01');

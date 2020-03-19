@@ -1,5 +1,5 @@
 
-package com.zenil.springboot.backend.apirest.models.entity;
+package com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
