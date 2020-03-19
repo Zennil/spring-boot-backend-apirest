@@ -29,24 +29,24 @@ public class ClienteRestController {
     @Autowired
     private IClienteService clienteService;
 
-    @GetMapping("/clientes")
+    @GetMapping(value = "/clientes", name = "listar")
     public List<Cliente> index() {
         return clienteService.findAll();
     }
 
-    @GetMapping(value = "/clientes/{id}")
+    @GetMapping(value = "/clientes/{id}", name = "mostrar")
     @ResponseStatus(code = HttpStatus.OK)
     public Cliente show(@PathVariable Long id) {
         return clienteService.findById(id);
     }
 
-    @PostMapping(value = "/clientes")
+    @PostMapping(value = "/clientes", name = "crear")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente) {
         return clienteService.save(cliente);
     }
 
-    @PutMapping(value = "/clientes/{id}")
+    @PutMapping(value = "/clientes/{id}", name = "actualizar")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cliente update(@RequestBody Cliente cliente, @PathVariable Long id) {
         Cliente clienteActual = clienteService.findById(id);
@@ -58,10 +58,10 @@ public class ClienteRestController {
         return clienteService.save(clienteActual);
     }
 
-    @DeleteMapping(value = "/clientes/{id}")
+    @DeleteMapping(value = "/clientes/{id}", name = "eliminar")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         clienteService.delete(id);
     }
-    
+
 }
