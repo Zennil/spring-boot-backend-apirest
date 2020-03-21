@@ -66,8 +66,23 @@ public class ClienteRestController {
 
     @PostMapping(value = "/clientes", name = "crear")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Cliente create(@RequestBody Cliente cliente) {
-        return clienteService.save(cliente);
+    public ResponseEntity<?> create(@RequestBody Cliente cliente) {
+
+        Cliente newCliente = null;
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            newCliente = clienteService.save(cliente);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al realizar el insert en la base de datos.");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("mensaje", "El cliente ha sido creado con exito.");
+        response.put("cliente", newCliente);
+
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
     @PutMapping(value = "/clientes/{id}", name = "actualizar")
