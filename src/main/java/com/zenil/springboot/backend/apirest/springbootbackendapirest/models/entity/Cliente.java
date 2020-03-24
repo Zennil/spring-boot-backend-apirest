@@ -31,17 +31,17 @@ public class Cliente implements Serializable {
     private Long id;
 
     // Si se esta usando la version 2+ usar javax.validation
-    @NotEmpty
-    @Size(min = 4, max = 12)
+    @NotEmpty(message = "no puede estar vacio imbecil")
+    @Size(min = 4, max = 12, message = "el tamaño tiene que estar entre 4 y 12 prrro")
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @NotEmpty
+    @NotEmpty(message = "no puede estar vacio imbecil")
     @Column(name = "apellido")
     private String apellido;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "no puede estar vacio imbecil")
+    @Email(message = "no es una direccion de correo bien hecha")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
