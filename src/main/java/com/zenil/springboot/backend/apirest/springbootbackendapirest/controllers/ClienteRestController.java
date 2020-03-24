@@ -3,6 +3,9 @@ package com.zenil.springboot.backend.apirest.springbootbackendapirest.controller
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.services.IClienteService;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,10 +69,27 @@ public class ClienteRestController {
     }
 
     @PostMapping(value = "/clientes", name = "crear")
-    public ResponseEntity<?> create(@RequestBody Cliente cliente) {
+    public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
 
         Cliente newCliente = null;
         Map<String, Object> response = new HashMap<>();
+
+        if (result.hasErrors()) {
+
+            // Metodo para JDK con VERSION < 1.8
+            // List<String> errors = new ArrayList<>();
+            // for (FieldError error : result.getFieldErrors()) {
+            // errors.add("El campo '" + error.getField() + "' " +
+            // error.getDefaultMessage());
+            // }
+
+            List<String> errors = result.getFieldErrors().stream()
+                    .map(err -> "El campo '" + err.getField() + "' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors", errors);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+        }
 
         try {
             newCliente = clienteService.save(cliente);
@@ -85,11 +106,19 @@ public class ClienteRestController {
     }
 
     @PutMapping(value = "/clientes/{id}", name = "actualizar")
-    public ResponseEntity<?> update(@RequestBody Cliente cliente, @PathVariable Long id) {
+    public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Long id) {
 
         Map<String, Object> response = new HashMap<>();
         Cliente clienteActual = clienteService.findById(id);
         Cliente clienteActualizado = null;
+
+        if (result.hasErrors()) {
+            List<String> errors = result.getFieldErrors().stream()
+                    .map(err -> "El campo '" + err.getField() + "' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+            response.put("error", errors);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+        }
 
         if (clienteActual == null) {
             response.put("mensaje",
