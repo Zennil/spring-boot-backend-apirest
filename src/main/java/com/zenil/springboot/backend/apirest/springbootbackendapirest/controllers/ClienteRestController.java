@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -186,13 +187,13 @@ public class ClienteRestController {
         Cliente cliente = clienteService.findById(id);
 
         if (!file.isEmpty()) {
-            String nombreArchivo = file.getOriginalFilename();
+            String nombreArchivo = UUID.randomUUID().toString() + "_" + file.getOriginalFilename().replace(" ", "");
             Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
 
             try {
                 Files.copy(file.getInputStream(), rutaArchivo);
             } catch (IOException e) {
-                response.put("mensaje", "Error al intentar cargar la imagen");
+                response.put("mensaje", "Error al intentar cargar la imagen " + nombreArchivo);
                 response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
