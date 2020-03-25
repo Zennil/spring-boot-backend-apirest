@@ -1,5 +1,6 @@
 package com.zenil.springboot.backend.apirest.springbootbackendapirest.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -168,6 +169,19 @@ public class ClienteRestController {
         Map<String, Object> response = new HashMap<>();
 
         try {
+
+            Cliente cliente = clienteService.findById(id);
+
+            String nombreFotoOld = cliente.getFoto();
+
+            if (nombreFotoOld != null && nombreFotoOld.length() > 0) {
+                Path rutaFotoOld = Paths.get("uploads").resolve(nombreFotoOld).toAbsolutePath();
+                File archivoFotoOld = rutaFotoOld.toFile();
+                if (archivoFotoOld.exists() && archivoFotoOld.canRead()) {
+                    archivoFotoOld.delete();
+                }
+            }
+
             clienteService.delete(id);
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al eliminar de la base de datos.");
@@ -196,6 +210,16 @@ public class ClienteRestController {
                 response.put("mensaje", "Error al intentar cargar la imagen " + nombreArchivo);
                 response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+            String nombreFotoOld = cliente.getFoto();
+
+            if (nombreFotoOld != null && nombreFotoOld.length() > 0) {
+                Path rutaFotoOld = Paths.get("uploads").resolve(nombreFotoOld).toAbsolutePath();
+                File archivoFotoOld = rutaFotoOld.toFile();
+                if (archivoFotoOld.exists() && archivoFotoOld.canRead()) {
+                    archivoFotoOld.delete();
+                }
             }
 
             cliente.setFoto(nombreArchivo);
