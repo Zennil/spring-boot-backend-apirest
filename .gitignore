@@ -29,3 +29,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# exclude everything
+uploads/*
+
+# exception to the rule
+!uploads/.gitkeep 
