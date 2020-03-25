@@ -17,6 +17,8 @@ import javax.validation.Valid;
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.services.IClienteService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -51,6 +53,8 @@ public class ClienteRestController {
 
     @Autowired
     private IClienteService clienteService;
+
+    private final Logger logger = LoggerFactory.getLogger(ClienteRestController.class);
 
     @GetMapping(value = "/clientes", name = "listar")
     public List<Cliente> index() {
@@ -205,8 +209,11 @@ public class ClienteRestController {
         Cliente cliente = clienteService.findById(id);
 
         if (!file.isEmpty()) {
+
             String nombreArchivo = UUID.randomUUID().toString() + "_" + file.getOriginalFilename().replace(" ", "");
             Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
+
+            logger.info(rutaArchivo.toString());
 
             try {
                 Files.copy(file.getInputStream(), rutaArchivo);
@@ -242,6 +249,8 @@ public class ClienteRestController {
     public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto) {
 
         Path rutaFoto = Paths.get("uploads").resolve(nombreFoto).toAbsolutePath();
+
+        logger.info(rutaFoto.toString());
 
         Resource recurso = null;
 
