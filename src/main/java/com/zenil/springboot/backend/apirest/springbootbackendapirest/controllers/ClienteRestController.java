@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
+import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity.Region;
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.services.IClienteService;
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.services.IUploadFileService;
 
@@ -151,6 +152,7 @@ public class ClienteRestController {
             clienteActual.setNombre(cliente.getNombre());
             clienteActual.setEmail(cliente.getEmail());
             clienteActual.setCreateAt(cliente.getCreateAt());
+            clienteActual.setRegion(cliente.getRegion());
 
             clienteActualizado = clienteService.save(clienteActual);
 
@@ -240,5 +242,10 @@ public class ClienteRestController {
         cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
 
         return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/clientes/regiones", name = "regiones")
+    public List<Region> listarRegiones() {
+        return clienteService.findAllRegiones();
     }
 }

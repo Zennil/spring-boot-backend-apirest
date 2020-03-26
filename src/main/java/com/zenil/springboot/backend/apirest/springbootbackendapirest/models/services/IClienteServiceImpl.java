@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.dao.IClienteDAO;
 import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
+import com.zenil.springboot.backend.apirest.springbootbackendapirest.models.entity.Region;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,6 +46,12 @@ public class IClienteServiceImpl implements IClienteService {
     @Transactional
     public void delete(Long id) {
         clienteDAO.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Region> findAllRegiones() {
+        return clienteDAO.findAllRegiones();
     }
 
 }

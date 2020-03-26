@@ -59,9 +59,10 @@ public class Cliente implements Serializable {
     @Column(name = "foto")
     private String foto;
 
+    @NotNull(message = "la región no puede estar vacia")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Region region;
 
     public Long getId() {
