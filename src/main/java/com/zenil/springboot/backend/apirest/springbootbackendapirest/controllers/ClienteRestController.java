@@ -255,15 +255,25 @@ public class ClienteRestController {
         Resource recurso = null;
 
         try {
-            
+
             recurso = new UrlResource(rutaFoto.toUri());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-        if(!recurso.exists() && !recurso.isReadable()){
-            throw new RuntimeException("No se pudo cargar la imagen: " + nombreFoto);
+        if (!recurso.exists() && !recurso.isReadable()) {
+            rutaFoto = Paths.get("src/main/resources/static/images").resolve("no-user.png").toAbsolutePath();
+
+            try {
+
+                recurso = new UrlResource(rutaFoto.toUri());
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            logger.error("No se pudo cargar la imagen: " + nombreFoto);
         }
 
         HttpHeaders cabecera = new HttpHeaders();
