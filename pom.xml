@@ -63,6 +63,8 @@
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>2.4.0.RELEASE</version>
+			<!-- Si algo no funciona utilizar la siguiente version -->
+			<!-- <version>2.3.4.RELEASE</version> -->
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt -->
@@ -70,6 +72,8 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-jwt</artifactId>
 			<version>1.1.0.RELEASE</version>
+			<!-- Si algo no funciona utilizar la siguiente version -->
+			<!-- <version>1.0.9.RELEASE</version> -->
 		</dependency>
 
 	</dependencies>
