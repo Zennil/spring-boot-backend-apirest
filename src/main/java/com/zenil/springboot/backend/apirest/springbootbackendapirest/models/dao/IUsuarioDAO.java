@@ -13,7 +13,7 @@ public interface IUsuarioDAO extends CrudRepository<Usuario, Long> {
     // Si se quiere agregar mas campo se debe usar And
     // public Usuario findByUsername(String username);
 
-    @Query("slelect u from Usuario u where u.username = ?1")
+    @Query("select u from Usuario u where u.username = ?1")
     public Usuario findByUsername2(String username);
 
 }
