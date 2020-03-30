@@ -44,7 +44,6 @@ public class AutorizationServerConfig extends AuthorizationServerConfigurerAdapt
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter());
-        super.configure(endpoints);
     }
 
     private JwtTokenStore tokenStore() {
