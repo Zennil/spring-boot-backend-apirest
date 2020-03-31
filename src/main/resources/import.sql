@@ -24,8 +24,8 @@ INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES('Per
 INSERT INTO clientes (nombre, apellido, email, create_at, region_id) VALUES('Persona13', 'Apellid13','correo13@gmail.com','2020-01-01',8);
 
 /*Creacion de usuarios con sus roles*/
-INSERT INTO usuarios (username, password, enabled) VALUES ('armando', '$2a$10$T7pJy8zK50Wsy8kI/xYw7epudCPjuvglIecG5Mc37JZDSfM7ZJFsy', 1);
-INSERT INTO usuarios (username, password, enabled) VALUES ('admin', '$2a$10$qzBYJ0Jza6QXbvfk4RWTOubF5.V7Zn4ZCyKS2QRIq16atdx5aco32', 1);
+INSERT INTO usuarios (username, password, enabled, nombre, apellido, email) VALUES ('armando', '$2a$10$T7pJy8zK50Wsy8kI/xYw7epudCPjuvglIecG5Mc37JZDSfM7ZJFsy', 1, 'Armando', 'Zenil', 'szenil@gmail.com');
+INSERT INTO usuarios (username, password, enabled, nombre, apellido, email) VALUES ('admin', '$2a$10$qzBYJ0Jza6QXbvfk4RWTOubF5.V7Zn4ZCyKS2QRIq16atdx5aco32', 1, 'Franz', 'Kafka', 'fkafka@gmail.com');
 
 INSERT INTO roles (nombre) VALUES ('ROLE_USER');
 INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');

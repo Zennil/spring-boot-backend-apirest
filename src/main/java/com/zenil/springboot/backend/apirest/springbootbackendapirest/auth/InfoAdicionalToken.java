@@ -29,9 +29,9 @@ public class InfoAdicionalToken implements TokenEnhancer {
 
         Map<String, Object> info = new HashMap<>();
 
-        info.put("info_adicional", "Hola, Que tal!".concat(authentication.getName()));
-        info.put("id_usuario", usuario.getId());
-        info.put("nombre_usuario", usuario.getUsername());
+        info.put("nombre", usuario.getNombre());
+        info.put("apellido", usuario.getApellido());
+        info.put("email", usuario.getEmail());
 
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
 
