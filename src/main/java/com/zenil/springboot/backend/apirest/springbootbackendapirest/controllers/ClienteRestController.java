@@ -187,9 +187,9 @@ public class ClienteRestController {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        response.put("mensaje", "Se ha eliminado con exito el cliente.");
+        response.put("mensaje", "Se ha eliminado con exito el cliente.lala");
 
-        return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
     @PostMapping(value = "/clientes/upload", name = "cargar")
